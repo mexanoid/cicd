@@ -1,0 +1,42 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vmAdminUsername": {
+            "value": "AdminUser"
+        },
+        "vmAdminPassword": {
+            "value": "MySuperSecretPassw0rd"
+        },
+        "vmDnsName": {
+            "value": "octo-vm-node"
+        },
+        "vmSize": {
+            "value": "Standard_B2ms"
+        },
+        "existingNsgName": {
+            "value": "infra-nsg"
+        },
+        "existingSubNetName": {
+            "value": "infra-subnet"
+        },
+        "existingVNetName": {
+            "value": "infra-vnet"
+        },
+        "existingNetworkRgName": {
+            "value": "network"
+        },
+        "dscResourceUrl": {
+            "value": "https://infrastorm.blob.core.windows.net/dsc/OctopusServer.zip"
+        },
+        "octopusAdminUsername": {
+            "value": "AdminUser"
+        },
+        "octopusAdminPassword": {
+            "value": "MySuperSecretPassw0rd"
+        },
+        "webListenPrefix": {
+            "value": "http://localhost:80"
+        }
+    }
+}

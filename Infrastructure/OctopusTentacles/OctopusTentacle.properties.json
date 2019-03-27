@@ -1,0 +1,45 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vmAdminUsername": {
+            "value": "AdminUser"
+        },
+        "vmAdminPassword": {
+            "value": "MySuperSecretPassw0rd"
+        },
+        "vmDnsName": {
+            "value": "mytentaclevm"
+        },
+        "vmSize": {
+            "value": "Standard_B2ms"
+        },
+        "dscResourceUrl": {
+            "value": "https://example.com/bla.zip"
+        },
+        "tentacleOctopusServerUrl": {
+            "value": "https://octopus.example.com"
+        },
+        "tentacleApiKey": {
+            "value": "API-ABCDEFG1234567890"
+        },
+        "tentacleCommunicationMode": {
+            "value": "Poll"
+        },
+        "tentaclePort": {
+            "value": 10943
+        },
+        "tentacleRoles": {
+            "value": "app-server"
+        },
+        "tentacleEnvironments": {
+            "value": "Development"
+        },
+        "tentaclePublicHostNameConfiguration": {
+            "value": "PublicIP"
+        },
+        "tentacleCustomPublicHostName": {
+            "value": ""
+        }
+    }
+}

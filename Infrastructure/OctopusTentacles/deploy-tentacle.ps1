@@ -1,0 +1,1 @@
+az group deployment create --name "DeployTentacle" --resource-group "test" --template-file "OctopusTentacle.json" --parameters "OctopusTentacle.properties.json"

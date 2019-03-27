@@ -1,0 +1,100 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+    },
+    "variables": {
+        "namespace": "infra",
+        "tags": {
+            "vendor": "m",
+            "description": "network"
+        },
+        "location": "[resourceGroup().location]",
+        "networkSecurityGroupName": "[concat(variables('namespace'), '-nsg')]",
+        "vnet": {
+            "name": "[concat(variables('namespace'), '-vnet')]",
+            "addressPrefix": "10.0.0.0/16",
+            "subnet": {
+                "name": "[concat(variables('namespace'), '-subnet')]",
+                "addressPrefix": "10.0.0.0/24"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2016-03-30",
+            "name": "[variables('networkSecurityGroupName')]",
+            "location": "[variables('location')]",
+            "tags": {
+                "vendor": "[variables('tags').vendor]",
+                "description": "[variables('tags').description]"
+            },
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "allow_rdp",
+                        "properties": {
+                            "description": "Allow inbound RDP",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "3389",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 123,
+                            "direction": "Inbound"
+                        }
+                    },
+                    {
+                        "name": "allow_sql",
+                        "properties": {
+                            "description": "Allow inbound SQL port",
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "1433",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 150,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[variables('vnet').name]",
+            "apiVersion": "2016-03-30",
+            "location": "[variables('location')]",
+            "tags": {
+                "vendor": "[variables('tags').vendor]",
+                "description": "[variables('tags').description]"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]"
+            ],
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('vnet').addressPrefix]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('vnet').subnet.name]",
+                        "properties": {
+                            "addressPrefix": "[variables('vnet').subnet.addressPrefix]",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": {
+    }
+}

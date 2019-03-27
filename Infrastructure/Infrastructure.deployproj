@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>ff20bad8-86dd-42ce-86cc-6d2d66a5b023</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PrepareForBuildDependsOn>
+    </PrepareForBuildDependsOn>
+  </PropertyGroup>
+  <Import Condition=" Exists('Deployment.targets') " Project="Deployment.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- vertag<:>start tokens<:>maj.min -->
+  <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
+  <!-- vertag<:>end -->
+  <ItemGroup>
+    <None Include="create-rg.ps1" />
+    <None Include="Deployment.targets">
+      <Visible>False</Visible>
+    </None>
+    <Content Include="Deploy-AzureResourceGroup.ps1" />
+    <Content Include="DSC\132.ps1" />
+    <None Include="JenkinsServer\JenkinsServer.ps1" />
+    <None Include="KeyVault\create-key-vault.ps1" />
+    <None Include="OctopusServer\deploy-octopus-server.ps1" />
+    <None Include="OctopusServer\OctopusServer.json" />
+    <None Include="OctopusServer\OctopusServer.parameters.json" />
+    <None Include="OctopusServer\OctopusServer.ps1" />
+    <None Include="OctopusServer\OctopusServer.zip" />
+    <None Include="OctopusTentacles\deploy-tentacle.ps1" />
+    <None Include="OctopusTentacles\OctopusTentacle.json" />
+    <None Include="OctopusTentacles\OctopusTentacle.properties.json" />
+    <None Include="OctopusTentacles\OctopusTentacle.ps1" />
+    <None Include="OctopusTentacles\OctopusTentacle.zip" />
+    <None Include="Storage\create-storage.ps1" />
+    <None Include="VirtualNetwork\create-vnet.ps1" />
+    <None Include="VirtualNetwork\vnet.json" />
+    <None Include="VirtualNetwork\vnet.parameters.json" />
+  </ItemGroup>
+  <Target Name="GetReferenceAssemblyPaths" />
+</Project>
