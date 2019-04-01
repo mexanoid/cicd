@@ -24,11 +24,7 @@
   <!-- vertag<:>end -->
   <ItemGroup>
     <None Include="create-rg.ps1" />
-    <None Include="Deployment.targets">
-      <Visible>False</Visible>
-    </None>
-    <Content Include="Deploy-AzureResourceGroup.ps1" />
-    <Content Include="DSC\132.ps1" />
+    <None Include="Deployment.targets" />    
     <None Include="JenkinsServer\JenkinsServer.ps1" />
     <None Include="KeyVault\create-key-vault.ps1" />
     <None Include="OctopusServer\deploy-octopus-server.ps1" />
@@ -45,6 +41,7 @@
     <None Include="VirtualNetwork\create-vnet.ps1" />
     <None Include="VirtualNetwork\vnet.json" />
     <None Include="VirtualNetwork\vnet.parameters.json" />
+    <Content Include="Deploy-AzureResourceGroup.ps1" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>

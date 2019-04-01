@@ -93,7 +93,7 @@
                 "name": "[concat('diagnostics', uniquestring(resourceGroup().id))]"
             }
         },
-        "publicIPAddressName": "[concat(variables('namespace'), '-publicip')]",
+        "publicIPAddressName": "[concat(variables('namespace'), '-public-ip')]",
         "nic": {
             "name": "[concat(variables('namespace'), '-nic')]",
             "ipConfigName": "[concat(variables('namespace'), '-ipconfig')]"
